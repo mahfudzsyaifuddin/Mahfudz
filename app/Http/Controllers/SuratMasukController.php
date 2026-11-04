@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\IncomingLetter;
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 
 class SuratMasukController extends Controller
 {
@@ -29,7 +32,10 @@ class SuratMasukController extends Controller
                 'perihal' => 'LPM'
             ]
         ];
+<<<<<<< HEAD
         $suratMasuk = IncomingLetter::all();
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 
         return view('surat-masuk.index',compact('suratMasuk'));
     }
@@ -59,8 +65,11 @@ class SuratMasukController extends Controller
             ]
     ];
     $surat = $suratMasukDetail[$id] ?? null;
+<<<<<<< HEAD
     $surat = IncomingLetter::findOrFail($id);
     
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
         return view('surat-masuk.show',compact('surat'));
     }
 }

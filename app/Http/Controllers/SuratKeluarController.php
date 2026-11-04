@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\OutgoingLetter;
 
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 class SuratKeluarController extends Controller
 {
     private function data()
@@ -36,8 +39,11 @@ class SuratKeluarController extends Controller
     public function index()
     {
         $suratKeluar = $this->data();
+<<<<<<< HEAD
         $suratKeluar = OutgoingLetter::all();
 
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
         return view('surat-keluar.index', compact('suratKeluar'));
     }
 
@@ -48,10 +54,16 @@ class SuratKeluarController extends Controller
         if (!isset($suratKeluarDetail[$id])) {
             abort(404);
         }
+<<<<<<< HEAD
         $surat = OutgoingLetter::findOrFail($id);
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 
         $surat = $suratKeluarDetail[$id];
         return view('surat-keluar.show', compact('surat'));
     }
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 }
