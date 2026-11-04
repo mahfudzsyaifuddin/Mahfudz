@@ -6,21 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void
-    {
-        Schema::create('outgoing_letters', function (Blueprint $table) {
-            $table->id();
-            $table->string('nomor_surat');
-            $table->date('tanggal');
+    /**
+     * Run the migrations.
+     */
+public function up(): void
+{
+Schema::create('outgoing_letters', function (Blueprint $table) {
+$table->id();
+$table->string('nomor_surat');
+$table->date('tanggal');
             $table->string('tujuan');
-            $table->string('perihal');
-            $table->text('keterangan')->nullable();
-            $table->timestamps();
-        });
-    }
+            $table->string('pengirim');
+$table->string('perihal');
+$table->text('keterangan')->nullable();
+$table->timestamps();
+});
+}
 
-    public function down(): void
-    {
-        Schema::dropIfExists('outgoing_letters');
-    }
+    /**
+     * Reverse the migrations.
+     */
+public function down(): void
+{
+Schema::dropIfExists('outgoing_letters');
+}
+};
 };

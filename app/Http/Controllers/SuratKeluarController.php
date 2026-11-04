@@ -2,68 +2,80 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
+use Illuminate\Http\Request;
 use App\Models\OutgoingLetter;
 
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 class SuratKeluarController extends Controller
 {
-    private function data()
-    {
-        return [
-            1 => [
-                'id' => 1,
-                'nomor_surat' => '001/KLR/FT/X/2026',
-                'tanggal' => '10-10-2026',
-                'tujuan' => 'Rektorat',
-                'perihal' => 'Permohonan Izin Kegiatan',
-            ],
-            2 => [
-                'id' => 2,
-                'nomor_surat' => '002/KLR/FT/X/2026',
-                'tanggal' => '11-10-2026',
-                'tujuan' => 'BAA',
-                'perihal' => 'Pengajuan Jadwal Ujian',
-            ],
-            3 => [
-                'id' => 3,
-                'nomor_surat' => '003/KLR/FT/X/2026',
-                'tanggal' => '12-10-2026',
-                'tujuan' => 'LPM',
-                'perihal' => 'Laporan Evaluasi',
-            ],
-        ];
-    }
-
     public function index()
     {
-        $suratKeluar = $this->data();
-<<<<<<< HEAD
-        $suratKeluar = OutgoingLetter::all();
+    public function index() {
+        //return 'Halaman surat keluar dari controller';
+        $suratKeluar = [
+            [
+                'id' => 1,
+                'nomor_surat' => '001/FT/X/2026',
+                'tanggal' => '05-10-2024',
+                'pengirim' => 'Fakultas Teknik',
+                'perihal' => 'Undangan Rapat'
+            ],
+            [
+                'id' => 2,
+                'nomor_surat' => '002/BAA/X/2026',
+                'tanggal' => '05-10-2000',
+                'pengirim' => 'BAA',
+                'perihal' => 'Undangan Akademik'
+            ],
+            [
+                'id' => 3,
+                'nomor_surat' => '003/LPPM/X/2026',
+                'tanggal' => '05-04-2024',
+                'pengirim' => 'LPPM',
+                'perihal' => 'Undangan Sosialisasi'
+            ]
+        ];
+$suratKeluar = OutgoingLetter::all();
 
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
-        return view('surat-keluar.index', compact('suratKeluar'));
-    }
+return view('surat-keluar.index', compact('suratKeluar'));
+        //view('surat-keluar.index' memanggil file index yang ada di folder 'surat-masuk'
+}
 
     public function show($id)
     {
-        $suratKeluarDetail = $this->data();
-
-        if (!isset($suratKeluarDetail[$id])) {
-            abort(404);
-        }
-<<<<<<< HEAD
         $surat = OutgoingLetter::findOrFail($id);
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
+    public function show($id) {
+        // return 'Halaman surat keluar dari controller untuk id = ' . $id ;
+        $suratKeluar = [
+            1 => [
+                'id' => 1,
+                'nomor_surat' => '001/FT/X/2026',
+                'tanggal' => '05-10-2024',
+                'pengirim' => 'Fakultas Teknik',
+                'perihal' => 'Undangan Rapat',
+                'keterangan' => 'Undangan rapat koordinasi Fakultas Teknik'
+            ],
+            2 => [
+                'id' => 2,
+                'nomor_surat' => '002/BAA/X/2026',
+                'tanggal' => '05-10-2000',
+                'pengirim' => 'BAA',
+                'perihal' => 'Undangan Akademik',
+                'keterangan' => 'Pemberitahuan kegiatan akademik'
+            ],
+            3 => [
+                'id' => 3,
+                'nomor_surat' => '003/LPPM/X/2026',
+                'tanggal' => '05-04-2024',
+                'pengirim' => 'LPPM',
+                'perihal' => 'Undangan Sosialisasi',
+                'keterangan' => 'Undangan kegiatan sosialisasi penelitian'
+            ]
+        ];
 
-        $surat = $suratKeluarDetail[$id];
-        return view('surat-keluar.show', compact('surat'));
-    }
-<<<<<<< HEAD
+        $surat = $suratKeluar[$id] ?? null;
+
+        $surat = OutgoingLetter::findOrFail($id);
+return view('surat-keluar.show', compact('surat'));
 }
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
+}
 }

@@ -8,3 +8,4 @@ class OutgoingLetter extends Model
 {
     //
 }
+}
