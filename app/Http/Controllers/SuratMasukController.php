@@ -3,73 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Models\IncomingLetter;
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
 
 class SuratMasukController extends Controller
 {
-    public function index() {
-        $suratMasuk = [
-            [
-                'id' => 1,
-                'nomor_surat' => '001/FT/x/2026',
-                'tanggal' => '08-10-2026',
-                'pengirim' => 'Fakultas Teknik',
-                'perihal' => 'Undangan Rapat'
-            ],
-            [   'id' => 2,
-                'nomor_surat' => '002/FT/x/2026',
-                'tanggal' => '08-10-2026',
-                'pengirim' => 'BAA',
-                'perihal' => 'Undangan Akademik'
-            ],
-            [   'id' => 3,
-                'nomor_surat' => '003/FT/x/2026',
-                'tanggal' => '08-10-2026',
-                'pengirim' => 'Fakultas Teknik',
-                'perihal' => 'LPM'
-            ]
-        ];
-<<<<<<< HEAD
+public function index() {
         $suratMasuk = IncomingLetter::all();
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
+        $suratMasuk = IncomingLetter::orderBy('id', 'desc')->get();
+        return view('surat-masuk.index', compact('suratMasuk'));
+    }
+
+    public function create() {
+        return view('surat-masuk.create');
+    }
 
         return view('surat-masuk.index',compact('suratMasuk'));
-    }
-    public function show($id) {
+    public function store(Request $request) {
+        $validated = $request->validate([
+            'nomor_surat' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'pengirim' => 'required|string|max:255',
+            'perihal' => 'required|string|max:255',
+            'keterangan' => 'nullable|string',
+        ]);
+        IncomingLetter::create($validated);
+        return redirect()->route('surat-masuk.index')->with('success', 'Surat berhasil ditambahkan.');
+}
 
-    $suratMasukDetail = [
-        1=>[
-                'id' => 1,
-                'nomor_surat' => '001/FT/x/2026',
-                'tanggal' => '08-10-2026',
-                'pengirim' => 'Fakultas Teknik',
-                'perihal' => 'Undangan Rapat'
-            ],
-        2=>[
-                'id' => 2,
-                'nomor_surat' => '002/FT/x/2026',
-                'tanggal' => '08-10-2026',
-                'pengirim' => 'BAA',
-                'perihal' => 'Undangan Akademik'
-            ],
-        3=>[
-                'id' => 3,
-                'nomor_surat' => '003/FT/x/2026',
-                'tanggal' => '08-10-2026',
-                'pengirim' => 'Fakultas Teknik',
-                'perihal' => 'LPM'
-            ]
-    ];
-    $surat = $suratMasukDetail[$id] ?? null;
-<<<<<<< HEAD
-    $surat = IncomingLetter::findOrFail($id);
-    
-=======
->>>>>>> 7cd37a8881b952c47c1af42270758167a896b200
-        return view('surat-masuk.show',compact('surat'));
+public function show($id) {
+        $surat = IncomingLetter::findOrFail($id);
+        return view('surat-masuk.show', compact('surat'));
     }
+
+    public function edit($id) {
+        $surat = IncomingLetter::findOrFail($id);
+        return view('surat-masuk.edit', compact('surat'));
+    }
+
+    public function update(Request $request, $id) {
+        $surat = IncomingLetter::findOrFail($id);
+
+        $validated = $request->validate([
+            'nomor_surat' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'pengirim' => 'required|string|max:255',
+            'perihal' => 'required|string|max:255',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $surat->update($validated);
+
+        return redirect()->route('surat-masuk.index')->with('success', 'Surat berhasil diperbarui.');
+    }
+
+    public function destroy($id) {
+$surat = IncomingLetter::findOrFail($id);
+        
+        return view('surat-masuk.show',compact('surat'));
+        $surat->delete();
+
+        return redirect()->route('surat-masuk.index')->with('success', 'Surat berhasil dihapus.');
+}
 }
