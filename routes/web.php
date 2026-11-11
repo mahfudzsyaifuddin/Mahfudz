@@ -39,12 +39,19 @@ Route::middleware('auth')->group(function () {
     Route::resource('surat-masuk', SuratMasukController::class)
         ->only(['index', 'show'])
         ->parameters(['surat-masuk' => 'id']);
+    Route::resource('surat-keluar', SuratKeluarController::class)
+    ->only(['index', 'show'])
+    ->parameters(['surat-keluar' => 'id']);
 
     // Surat Masuk: Operasi perubahan data (create, store, edit, update, destroy) hanya untuk role 'petugas'
     Route::resource('surat-masuk', SuratMasukController::class)
         ->except(['index', 'show'])
         ->parameters(['surat-masuk' => 'id'])
         ->middleware('can:manage-letters');
+    Route::resource('surat-keluar', SuratKeluarController::class)
+    ->except(['index', 'show'])
+    ->parameters(['surat-keluar' => 'id'])
+    ->middleware('can:manage-letters');
 
     // Jika Anda memiliki rute surat-keluar dari praktikum P4, pastikan diletakkan di sini 
     // dan berikan middleware 'can:manage-letters' pada rute mutasi/perubahannya.

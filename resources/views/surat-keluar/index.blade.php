@@ -6,7 +6,10 @@
 
 <h1>Daftar Surat Keluar</h1>
 
-<a href="{{ route('surat-keluar.create') }}">+ Tambah Surat</a>
+{{-- Tombol Tambah Surat Keluar (Hanya muncul untuk petugas) --}}
+@can('manage-letters')
+    <a href="{{ route('surat-keluar.create') }}">+ Tambah Surat Keluar</a>
+@endcan
 
 @if (session('success'))
     <p style="color:green">{{ session('success') }}</p>
@@ -32,13 +35,17 @@
             <td>{{ $surat->pengirim }}</td>
             <td>{{ $surat->perihal }}</td>
             <td>
+                {{-- Tombol Detail: Bisa dilihat oleh semua user yang login --}}
                 <a href="{{ route('surat-keluar.show', $surat->id) }}">Detail</a>
+                {{-- Tombol Edit dan Hapus (Hanya muncul untuk petugas) --}}
+                @can('manage-letters')
                 <a href="{{ route('surat-keluar.edit', $surat->id) }}">Edit</a>
                 <form action="{{ route('surat-keluar.destroy', $surat->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Hapus surat ini?')">Hapus</button>
                 </form>
+                @endcan
             </td>
         </tr>
         @empty
