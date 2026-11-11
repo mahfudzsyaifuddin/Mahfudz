@@ -16,8 +16,7 @@ public function index() {
     public function create() {
         return view('surat-masuk.create');
     }
-
-        return view('surat-masuk.index',compact('suratMasuk'));
+    
     public function store(Request $request) {
         $validated = $request->validate([
             'nomor_surat' => 'required|string|max:255',
@@ -57,9 +56,7 @@ public function show($id) {
     }
 
     public function destroy($id) {
-$surat = IncomingLetter::findOrFail($id);
-        
-        return view('surat-masuk.show',compact('surat'));
+        $surat = IncomingLetter::findOrFail($id);
         $surat->delete();
 
         return redirect()->route('surat-masuk.index')->with('success', 'Surat berhasil dihapus.');

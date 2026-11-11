@@ -9,26 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-public function up(): void
-{
-Schema::create('outgoing_letters', function (Blueprint $table) {
-$table->id();
-$table->string('nomor_surat');
-$table->date('tanggal');
-            $table->string('tujuan');
+    public function up(): void
+    {
+        Schema::create('outgoing_letters', function (Blueprint $table) {
+            $table->id();
+            $table->string('nomor_surat');
+            $table->date('tanggal');
             $table->string('pengirim');
-$table->string('perihal');
-$table->text('keterangan')->nullable();
-$table->timestamps();
-});
-}
+            $table->string('perihal');
+            $table->text('keterangan')->nullable();
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
-public function down(): void
-{
-Schema::dropIfExists('outgoing_letters');
-}
-};
+    public function down(): void
+    {
+        Schema::dropIfExists('outgoing_letters');
+    }
 };

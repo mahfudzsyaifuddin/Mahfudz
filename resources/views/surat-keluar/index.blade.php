@@ -18,7 +18,6 @@
             <th>No</th>
             <th>Nomor Surat</th>
             <th>Tanggal</th>
-            <th>Tujuan</th>
             <th>Pengirim</th>
             <th>Perihal</th>
             <th>Aksi</th>
@@ -30,7 +29,6 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $surat->nomor_surat }}</td>
             <td>{{ $surat->tanggal }}</td>
-            <td>{{ $surat->tujuan }}</td>
             <td>{{ $surat->pengirim }}</td>
             <td>{{ $surat->perihal }}</td>
             <td>
@@ -48,3 +46,4 @@
         @endforelse
     </tbody>
 </table>
+@endsection
